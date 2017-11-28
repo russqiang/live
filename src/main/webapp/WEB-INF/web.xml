@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns="http://java.sun.com/xml/ns/javaee" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+
+	<!--设置编码过滤  -->
+	  <filter>
+	  		<filter-name>encoding</filter-name>
+	  		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  		<init-param>
+	  			<param-name>encoding</param-name>
+	 			<param-value>UTF-8</param-value>
+	  		</init-param>
+	  </filter>	
+	  <filter-mapping>
+	  		<filter-name>encoding</filter-name>
+	  		<url-pattern>*.do</url-pattern>
+	  </filter-mapping>
+	
+ 	<!--spring的配置文件  -->
+  
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
+	<!--设置编码格式  -->
+	<filter>  
+        <filter-name>CharacterEncodingFilter</filter-name>  
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+        <init-param>  
+            <param-name>encoding</param-name>  
+            <param-value>utf-8</param-value>  
+        </init-param>  
+        <init-param>  
+            <param-name>forceEncoding</param-name>  
+            <param-value>true</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>CharacterEncodingFilter</filter-name>  
+        <url-pattern>*.do</url-pattern>  
+    </filter-mapping>  
+	
+	<servlet>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	
+	<!--第一种：*.action,访问以.action结尾由DispatcherServlet进行解析
+  			第二种：/ 所有访问的地址都由DispatcherServlet进行解析，对于静态文件的解析需要配置不让DispatcherServlet进行解析
+  			使用这种方式可以实现RESTful风格的url
+  			第三种：/* 这样配置不对，使用这种配置，最终要转发到易个jsp页面，任然会由DispatcherServlet解析jsp，
+  			不能根据jsp页面找到handler，会报错
+  			
+  		  -->
+	<servlet-mapping>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+<!--   	
+   <servlet> 
+		<servlet-name>t1</servlet-name> 
+		<servlet-class>com.j1703.util.ScreenShot</servlet-class> 
+		如果需要自动加载，加下面一句 
+		<load-on-startup>1</load-on-startup> 
+	</servlet> 
+   -->
+	
+  		
+  		
+ 
+  
+	
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

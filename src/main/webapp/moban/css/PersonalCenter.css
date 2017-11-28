@@ -1,0 +1,338 @@
+@charset "utf-8";
+/*personalCenter*/
+.homelayout ul li{
+	margin-bottom:20px;
+}
+/*个人中心导航*/
+.homeleft{
+	width: 15%;
+	float:left;
+	background-image: url(../images/homenav.jpg);
+	font-size:20px;
+	height: 700px
+}
+/*个人中心*/
+.personcenter{
+	color:#48D1CC;
+	text-align: center;
+}
+/*改变a标签下划线*/
+.ulstyle li a{
+	text-decoration: none;
+}
+
+/*改变点击后的背景色*/
+/*.changehomeright{
+	width:180px;
+	height: 30px;
+	background-color: green;
+}*/
+.homeright{
+	width: 85%;
+	float: left;
+	background-color: #F7F7F7;
+	height: 700px;
+}
+.ulstyle{
+	list-style: none;
+}
+
+
+.personcenterul{
+	float: left;
+	width: 120px;
+	padding: 40px 0px 0px 0px;
+}
+.percenterright{
+	float:left;
+	width:180px;
+	padding: 40px 0px 0px 0px;
+}
+
+/*changeinfo*/
+/*更改头像*/
+.avatar{
+	list-style: none;
+	margin:50px 100px 85px 50px;
+}
+.changeulstyle{
+	position:absolute;
+    font-size: 14px;
+	width: 120px;
+	left:280px;
+	font-family:"微软雅黑";
+}
+.changeulstyle ul li{
+	margin:20px 0px 40px 0px;
+}
+.userInfo ul li{
+	list-style: none;
+}
+
+/*头像  */
+
+.personleft{
+	width:100px;
+	border-radius: 50%;
+}
+/*人物头像*/
+#personleftimg{
+	width:100px;
+	margin-left:300px;
+	border-radius: 50%;
+}
+.person{
+	float:left;
+}
+#changeButton{
+	margin:30px 0px 0px 40px;
+}
+.changInfo{
+	position:relative;
+	height:280px;
+}
+
+/*修改信息*/
+.changeinput{
+	position:absolute;
+	left:400px;
+	width:30%;
+}
+.changeinput input{
+    height: 33.5px;
+    margin:10px 0px 5px 0px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#changeradio{
+	width:35px;
+	height:13px;
+}
+
+/*提交*/
+.refer{
+	width: 600px;
+	color:greenyellow;
+	font-family:"微软雅黑";
+	text-align: center;
+}
+#changesubmit{
+	margin-left: 320px;
+	border:none;
+	height: 40px;
+	width: 50%;
+	background: #ce1b1b !important;
+	border-radius: 3px !important;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: white;
+	line-height: 40px;
+}
+/*主播anchor*/
+
+/*span*/
+.ul1 {
+	float: left;
+	width:150px;
+	padding: 95px 0px 0px 0px;
+}
+/*span下的间距*/
+.ul1 ul li {
+	height: 20px;
+	margin:10px 0px 25px 40px;
+}
+/*input框*/
+.ul2{
+	float: left;
+	width:350px;
+	padding: 90px 0px 0px 0px;
+}
+.ulstyle li input{
+	width: 250px;
+	height: 35	px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.ulstyle li select{
+	border-radius: 4px;
+	list-style: none;
+	width: 250px;
+	height: 36px;
+	border: 1px solid #ccc;
+	background-color: white;
+}
+/*验证码*/
+#liphoneCode{
+	width:175px;
+}
+#ligetCode{
+	width: 70px;
+	height: 28px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+/*下一步*/
+#registernext {
+	margin: 10px auto;
+	border: none;
+	height: 40px;
+	width: 95%;
+	background: #ce1b1b !important;
+	border-radius: 3px !important;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: white;
+	line-height: 40px;
+}
+
+
+/*申请直播 传照片*/
+.applay {
+	background-color: #F7F7F7;
+	width: 650px;
+	height: auto;
+	display: none;
+}
+
+/*照片保持清晰*/
+.info_list {
+	border-bottom: 1px solid #F2F2F2;
+}
+.list_left2 {
+	width: 100%;
+	margin-left: 1%;
+	height: 25px;
+	font-family: "微软雅黑";
+	font-size: 10px;
+	color: #636363;
+	line-height: 10px;
+	float: left;
+}
+
+/*示例*/
+
+.id_img_wp {
+	width: 100%;
+	margin: 0 auto;
+	/*min-height: 30px;*/
+}
+
+/*图片*/
+.img_wp {
+	width: 40%;
+	margin: 0 5% 0 5%;
+	float: left;
+	cursor: pointer;
+}
+.id_img_wp img{
+	width: 262px;
+	height: 175px;
+}
+.img_intro {
+	color: #383838;
+	text-align: center;
+	font-family: "微软雅黑";
+	/*padding: 10px 0 10px 0;*/
+	font-size: 15px;
+}
+
+/*submit*/
+.save_btn {
+	margin: 10px auto;
+	top:30px;
+	border: none;
+	height: 40px;
+	width: 95%;
+	background: #ce1b1b !important;
+	border-radius: 3px !important;
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: white;
+	line-height: 40px;
+}
+
+/*我的订阅*/
+.allsubscript{
+	position:relative;
+	float: left;
+	margin:20px 0 0 30px;
+	width:268px;
+	height:220px;
+	background-color: white;
+}
+#liveState{
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:#1CD5B5;
+	width:40px;
+	height:20px;
+	font-size:10px;
+	color:#fff;
+}
+#unLiveState{
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:rgb(181,181,181);
+	width:40px;
+	height:20px;
+	font-size:10px;
+	color:#fff;
+}
+/*视频*/
+.allsubscript img{
+	height: 150px;
+}
+/*类别*/
+.description{
+	width:130px;
+	float: left;
+} 
+/*观看人数*/
+.watchnum{
+	float: right;
+	width: 100px;
+	text-align: left;
+} 
+/*用户名*/
+.subscriptuser{
+	width:130px;
+	float: left;
+}
+/*直播标签类型*/
+.subscriptlabel{
+	width: 100px;
+	float: right;
+	text-align: center;
+}
+.allsubscript div span{
+	font-family: "微软雅黑";
+	font-size: 13px;
+}
+/*取消订阅*/
+.allsubscript input{
+	margin: 5px auto;
+	border: none;
+	height: 25px;
+	width: 100%;
+	background: #ce1b1b !important;
+	border-radius: 3px !important;
+	font-family: "微软雅黑";
+	font-size: 13px;
+	color: white;
+	line-height: 25px;
+}

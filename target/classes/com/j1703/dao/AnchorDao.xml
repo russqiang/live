@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.j1703.dao.AnchorDao">
+	<!-- <cache type="com.j1703.redis.RedisCache"/> -->
+	
+	<!-- 更新关注人数 -->
+	<update id="focus" parameterType="anchor">
+		update anchor set
+		focusCount = focusCount + #{focusCount} where id = #{id}
+	</update>
+	
+	<!--模糊查询主播  -->
+	<select id="searchAnchor" parameterType="string" resultType="Anchor">
+		select * from anchor
+		<where>
+			liveType like concat('%', #{keyWords}, '%')    
+			or
+			nickName like concat('%', #{keyWords}, '%')
+		</where>
+	
+	</select>
+	
+	<select id="getAnchorByLiveCode" parameterType="string" resultType="Anchor">
+		select * from anchor
+		<where>
+			liveCode in
+			<foreach collection="array" item="liveCode" separator="," open="(" close=")">
+				#{liveCode}
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="getAnchor" parameterType="Anchor" resultType="Anchor" >
+		select * from anchor
+		<where>
+			id = #{id}
+		</where>
+	</select>
+	
+
+	<!-- 得到用户关注列表 -->
+	<select id="getFocusList" parameterType="anchor" resultType="String">
+		select focusList from anchor where id=#{id}
+	</select>
+	<!-- 更行用户关注 focusList -->
+	<update id="updateFocusList" parameterType="anchor">
+		update anchor set
+		focusList = #{focusList} where id = #{id}
+	</update>
+
+
+	<!-- 主播登录 -->
+	<select id="anchorLogin" parameterType="Anchor" resultType="Anchor">
+		select
+		*
+		from anchor
+		<where>
+			
+			<if test="phone != null">
+				phone = #{phone}
+			</if>
+			<if test="liveCode != null">
+				liveCode = #{liveCode}
+			</if>
+			
+			and password = #{password}
+			
+		</where>
+	</select>
+	<!-- 得到在线热播主播 -->
+	<select id="getHotLive" resultType="anchor">
+		select
+
+		id,nickName,phone,liveCode,liveCount
+
+		from anchor
+		<where>
+			state=1 and isHot = 1 limit 1;
+		</where>
+	</select>
+	<!-- 注册成功添加用户 -->
+	<insert id="insertUser" parameterType="anchor">
+		insert into anchor
+		(id,password,nickName,phone)
+		values(null,#{password},#{nickName},#{phone})
+	</insert>
+	<!-- 更改主播在线状态 -->
+	<update id="updateLiveState" parameterType="anchor">
+		update anchor set
+		state= #{state} where liveCode=#{liveCode}
+	</update>
+	<!-- 更新主播信息 -->
+	<update id="updateAnchor" parameterType="anchor">
+		update anchor set
+		<if test="username != null">
+			username = #{username},
+		</if>
+		<if test="password != null">
+			password = #{password},
+		</if>
+		<if test="nickName != null">
+			nickName = #{nickName},
+		</if>
+		<if test="imgUrl != null">
+			imgUrl = #{imgUrl},
+		</if>
+		<if test="email != null">
+			email = #{email},
+		</if>
+		<if test="phone != null">
+			phone = #{phone},
+		</if>
+		<if test="isLive != null">
+			isLive = #{isLive},
+		</if>
+		<if test="liveType != null">
+			liveType = #{liveType},
+		</if>
+		<if test="liveCode != null">
+			liveCode = #{liveCode},
+		</if>
+		<if test="focusList != null">
+			focusList = #{focusList},
+		</if>
+		<if test="focusCount != null">
+			focusCount = #{focusCount}
+		</if>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+</mapper>
+	

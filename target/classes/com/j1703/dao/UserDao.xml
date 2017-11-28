@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.j1703.dao.UserDao">
+
+	
+	<!-- 用户登录 -->
+	<select id="userLogin" parameterType="user" resultType="user">
+		select
+		
+		uid,password,nickName,imgUrl,phone,focusList
+		
+		from user
+		<where>
+			phone = #{phone} and password = #{password}
+		</where>
+	</select>
+	
+	<!-- 查询用户 -->
+	<select id="getUserById" parameterType="user" resultType="user">
+		select
+		
+		uid,password,nickName,imgUrl,phone,focusList
+		
+		from user
+		<where>
+			uid = #{uid}
+		</where>
+	</select>
+	
+
+	<!-- 用户注册 -->
+	<insert id="userRegist" parameterType="user">
+		insert into user
+		
+		(uid,password,nickName,phone)
+		
+		values
+		
+		(null,#{password},#{nickName},#{phone})
+	</insert>
+	<!-- 用户修改信息 -->
+	<update id="updateUser" parameterType="user">
+		update user 
+		<set>
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="nickName != null">
+				nickName = #{nickName},
+			</if>
+			<if test="imgUrl != null">
+				imgUrl = #{imgUrl},
+			</if>
+			<if test="email != null">
+				email = #{email},
+			</if>
+			<if test="focusList != null">
+				focusList = #{focusList}
+			</if>
+			<if test="gender != null">
+				gender = #{gender}
+			</if>
+			<if test="addr != null">
+				addr = #{addr}
+			</if>
+		</set>
+		<where>
+			uid = #{uid}
+		</where>
+	</update>
+</mapper>
+	

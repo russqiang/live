@@ -1,0 +1,183 @@
+body {
+	background-color: white; no-repeat top center;
+	font-size: 12px;
+	font-family: "微软雅黑";
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.screen {
+	width: 200px;
+	height: 100px;
+	background: red;
+}
+
+.dm {
+	width: 99%;
+	height: 700px;
+	position: absolute;
+	left: 0;
+}
+
+.dm .d_screen .d_del {
+	width: 38px;
+	height: 38px;
+	background: #600;
+	display: block;
+	text-align: center;
+	line-height: 38px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #fff;
+	border-radius: 19px;
+	border: 1px solid #fff;
+	z-index: 2;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	outline: none;
+}
+
+.dm .d_screen .d_del:hover {
+	background: #F00;
+}
+
+.d_mask {
+	overflow-y:scroll; 
+	overflow-x:scroll; 
+	/* overflow-x:hidden; */
+	/* overflow-y:visible; */
+	position: absolute;
+	bottom: 0;
+	width: 99%;
+	height: 95%;
+	bottom: 0px;
+	margin-buttom:5%;
+	border: 1px solid black;
+}
+
+/* 聊天框 */
+/* 指定视频区一系列属性 */
+#d_show {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 80px;
+	right: 0;
+	height: 595px;
+	opacity: 0.5;
+	z-index: 2;
+	top: 280px;
+}
+
+#d_show div {
+	font-size: 26px;
+	line-height: 36px;
+	font-weight: 500;
+	position: absolute;
+	top: 76px;
+	left: 10;
+	color: #fff;
+	font-size: 26px;
+}
+
+/* #mediaspace {
+	postion: relative;
+	width: 1000px;
+	height: 600px;
+	background-color: green;
+	margin: auto auto;
+	z-index: 0;
+} */
+.d_show div {
+	font-size: 26px;
+	line-height: 36px;
+	font-weight: 500;
+	position: absolute;
+	top: 76px;
+	left: 10;
+	color: #fff;
+	font-size: 26px;
+}
+/*end screen*/
+
+/*send start*/
+.send .s_filter {
+	width: 100%;
+	height: 76px;
+	background: #000;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.send  .s_con {
+	width: 100%;
+	height: 25px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	line-height: 76px;
+}
+
+.send {
+	width: 100%;
+	height: 30px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border: 1px solid black;
+}
+
+.s_text {
+	width: 83%;
+	height: 25px;
+	border: 0;
+	left: 0;
+}
+
+.send .s_con .s_submit {
+	position: absolute;
+	right: 0;
+	width: 20%;
+	height: 27px;
+	border-radius: 0 0 0 0;
+	outline: none;
+	font-size: 14px;
+	color: #fff;
+	background: #65c33d;
+	font-family: "微软雅黑";
+	cursor: pointer;
+	border: 0 solid #5bba32;
+	width: 50px;
+}
+
+.send .s_con .s_submit:hover {
+	background: #3eaf0e;
+}
+
+.mask_right {
+	position: absolute;
+	right: 0;
+	buttom: 0;
+	z-index: 3;
+	width: 17.5%;
+	height: 675px;
+	background-color: rgb(251, 251, 251);
+}
+
+.mask_left {
+	position: absolute;
+	left: 0;
+	buttom: 0;
+	z-index: 3;
+	width: 17.5%;
+	height: 675px;
+	background-color: rgb(251, 251, 251);
+}

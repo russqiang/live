@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		<!--读取properties配置文件  -->
+		<!--第一种  -->
+		<!-- <context:property-placeholder location="classpath:redis.properties"/>
+		<context:property-placeholder location="classpath:jdbc.properties"/> -->
+		<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		   	<property name="ignoreUnresolvablePlaceholders" value="true"/>
+		   	<property name="locations">
+		      <list>
+		         <value>classpath:jdbc.properties</value>
+		         <value>classpath:jedis.properties</value>
+		      </list>
+		    </property>
+		</bean>
+		
+		
+		<!--第二种  -->
+		<!-- <bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+			<property name="locations">
+				<array>
+					<value>classpath:jdbc.properties</value>
+					<value>classpath:jedis.properties</value>
+				</array>
+			</property>
+		</bean> -->
+		<!--redis数据源  -->
+		<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+			<property name="maxIdle" value="${redis.maxIdle}"/>
+	        <property name="maxTotal" value="${redis.maxActive}" />  
+	        <property name="maxWaitMillis" value="${redis.maxWait}" />   
+	        <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
+	        <property name="testOnReturn" value="true" />  
+		</bean>
+		
+	
+		<!--Jedis连接池的相关配置-->
+	   <!--  <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+	        新版是maxTotal，旧版是maxActive
+	        <property name="maxTotal">
+	            <value>${redis.pool.maxActive}</value>
+	        </property>
+	        <property name="maxIdle">
+	            <value>${redis.pool.maxIdle}</value>
+	        </property>
+	        <property name="testOnBorrow" value="true"/>
+	        <property name="testOnReturn" value="true"/>
+	    </bean> -->
+	
+	    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+	        <constructor-arg name="poolConfig" ref="poolConfig" />
+	        <constructor-arg name="host" value="${redis.host}" />
+	        <constructor-arg name="port" value="${redis.port}" type="int" />
+	        <constructor-arg name="timeout" value="${redis.timeout}" type="int" />
+	       <!--  <constructor-arg name="password" value="${redis.password}" /> -->
+	        <!-- <constructor-arg name="database" value="${redis.database}" type="int" /> -->
+	    </bean>
+		
+		<!-- Spring-redis连接池管理工厂 -->  
+		<!-- <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"    
+		    p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig"/> 
+    		  -->
+		<!-- 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 -->
+		<!-- <bean id="redisCacheTransfer" class="com.j1703.redis.RedisCacheTransfer">
+		    <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
+		</bean> -->
+		
+		<!--配置数据源  druid-->
+		<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+			<property name="driverClassName" value="${jdbc.driver}"></property>
+			<property name="url" value="${jdbc.url}"></property>
+			<property name="username" value="${jdbc.username}"></property>
+			<property name="password" value="${jdbc.password}"></property>
+		</bean>
+		
+		<!--sqlSessionFactoryBean  -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<!--加载mybatis配置文件  -->
+			<property name="configLocation" value="classpath:mybatis-config.xml"/>
+			<!--加载数据源  -->
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+		
+		<!--生成dao的代理对象  -->
+		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+			<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+			<property name="basePackage" value="com.j1703.dao"></property>
+		</bean>
+		<!-- 支持上传文件 -->  
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />  
+
+		
+		<!--service  -->
+		<bean id="classifyService" class="com.j1703.service.impl.ClassifyServiceImpl">
+		</bean>
+		<bean id="userService" class="com.j1703.service.impl.UserServiceImpl">
+		</bean>
+		<bean id="anchorService" class="com.j1703.service.impl.AnchorServiceImpl">
+		</bean>
+		
+		
+		
+
+</beans>
